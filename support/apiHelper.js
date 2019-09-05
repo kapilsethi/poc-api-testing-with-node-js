@@ -15,14 +15,17 @@ class ApiHelper {
         };
         try {
             const response = await request(options);
+            // console.log('get request response -->', response);
             return response;
         }
         catch (error) {
+            // console.log('get request error -->', error);
             return error;
         }
     };
 
     async postRequestMethod(url, apiKey, requestBody) {
+        var responseStatusCode;
         const options = {
             method: 'POST',
             url: url,
@@ -42,9 +45,15 @@ class ApiHelper {
             }
         };
         try {
-            const response = await request(options);
+            const res = await request(options, function(error, response, body) {
+                responseStatusCode = response.statusCode;
+            });
             // console.log('post request response -->', response);
-            return response;
+            // console.log('post request statusCode -->', responseStatusCode);
+            return {
+                response: res,
+                statusCode: responseStatusCode
+            };
         }
         catch (error) {
             // console.log('post request error -->', response);
