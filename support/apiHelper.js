@@ -1,7 +1,7 @@
-const request = require('request-promise')
+const request = require('request-promise');
 
 class ApiHelper {
-    getRequestMethod(url, apiKey) {
+    async getRequestMethod(url, apiKey) {
         const options = {
             method: 'GET',
             url: url,
@@ -13,15 +13,16 @@ class ApiHelper {
                 APPID: apiKey
             }
         };
-        return request(options).then (function (response) {
+        try {
+            const response = await request(options);
             return response;
-        })
-        .catch(function (error) {
+        }
+        catch (error) {
             return error;
-        });
+        }
     };
 
-    postRequestMethod(url, apiKey, requestBody) {
+    async postRequestMethod(url, apiKey, requestBody) {
         const options = {
             method: 'POST',
             url: url,
@@ -40,17 +41,18 @@ class ApiHelper {
                     "altitude": requestBody.altitude
             }
         };
-        return request(options).then (function (response) {
+        try {
+            const response = await request(options);
             // console.log('post request response -->', response);
             return response;
-        })
-        .catch(function (error) {
+        }
+        catch (error) {
             // console.log('post request error -->', response);
             return error;
-        });
+        }
     };
 
-    deleteRequestMethod(url, apiKey) {
+    async deleteRequestMethod(url, apiKey) {
         const options = {
             method: 'DELETE',
             url: url,
@@ -62,15 +64,16 @@ class ApiHelper {
                 APPID: apiKey
             }
         };
-        return request(options).then (function (response) {
+        try {
+            const response = await request(options);
             // console.log('delete request response -->', response);
             return response;
-        })
-        .catch(function (error) {
+        }
+        catch (error) {
             // console.log('delete request error -->', error);
             return error;
-        });
-    }
-}
+        }
+    };
+};
 
 module.exports = ApiHelper;
