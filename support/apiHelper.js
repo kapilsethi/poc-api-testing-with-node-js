@@ -15,9 +15,11 @@ class ApiHelper {
         };
         try {
             const response = await request(options);
+            // console.log('get request response -->', response);
             return response;
         }
         catch (error) {
+            // console.log('get request error -->', error);
             return error;
         }
     };

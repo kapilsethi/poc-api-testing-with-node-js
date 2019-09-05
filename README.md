@@ -41,7 +41,13 @@
 **Troubleshooting:**
 ----
 
-- N/A
+- Sometime 'Delete station test' fails as the request takes more than 2000ms to respond <br />
+    _How to fix_: Increase the timeout. Just add in [package.json](https://github.com/kapilsethi/poc-api-testing-with-node-js/blob/master/package.json) under scripts
+    ```json
+    "test": "./node_modules/.bin/mocha --timeout 10000 --reporter mocha-allure-reporter",
+    "generatereport": "allure generate --clean && allure open",
+    "rtag": "./node_modules/.bin/mocha --timeout 10000 --reporter mocha-allure-reporter && allure generate --clean && allure open"
+    ```
 
 **Have a feedback?**
 ---

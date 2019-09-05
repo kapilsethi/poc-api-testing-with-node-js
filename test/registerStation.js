@@ -46,16 +46,14 @@ describe('Register station -->', () => {
                 // Delete the registered station
                 var updatedUrl = testData["url"] + '/' + responseId;
                 console.log('updatedUrl in delete -->', updatedUrl);
-                apiHelper.deleteRequestMethod(updatedUrl, testData["apiKey"]).then(function (response) {
-                    // Check if station is deleted successfully
-                    var response12 = apiHelper.getRequestMethod(updatedUrl, testData["apiKey"]).then(function (res) {
-                        expect(res.statusCode).to.equal(404);
-                        expect(res.error.message).to.equal('Station not found');
-                        console.log('----------------------------------------------------');
-                        console.log('Registered station ' + responseId + ' is not found which means it is deleted successuly');
-                        console.log('----------------------------------------------------');        
-                    });
-                });
+                await apiHelper.deleteRequestMethod(updatedUrl, testData["apiKey"]);
+                // Check if station is deleted successfully
+                var res = await apiHelper.getRequestMethod(updatedUrl, testData["apiKey"]);
+                expect(res.statusCode).to.equal(404);
+                expect(res.error.message).to.equal('Station not found');
+                console.log('----------------------------------------------------');
+                console.log('Registered station ' + responseId + ' is not found which means it is deleted successfully');
+                console.log('----------------------------------------------------');
             });
         });
     });
