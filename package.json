@@ -1,0 +1,18 @@
+{
+  "name": "poc-api-testing-with-node-js",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "Kapil Sethi",
+  "license": "ISC",
+  "devDependencies": {
+    "chai": "^4.2.0",
+    "mocha": "^6.2.0",
+    "request": "^2.88.0",
+    "request-promise": "^4.2.4"
+  }
+}
