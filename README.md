@@ -21,6 +21,10 @@
 - Run '````npm run generatereport````' command to generate html report of the test execution results
 - Run '````npm run rtag````' command to run the tests and generate html report
 
+**Test Execution Report:**
+
+- Test execution report can be found in './allure-results' and './allure-report' locations
+
 **Features:**
 ----
 
@@ -32,6 +36,9 @@
 
 - _Reporting framework_:
     - Allure
+
+- _HTTP client_:
+    [Request](https://github.com/request/request)
 
 **Example API:**
 ----
