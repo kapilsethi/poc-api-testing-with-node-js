@@ -38,7 +38,7 @@
     - Allure
 
 - _HTTP client_:
-    [Request](https://github.com/request/request)
+    - [Request](https://github.com/request/request)
 
 **Example API:**
 ----
