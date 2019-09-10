@@ -16,7 +16,7 @@
  
  **Setting up environment variables**
  - Rename '[.env.example](https://github.com/kapilsethi/poc-api-testing-with-node-js/blob/master/.env.example)' file to '.env'
- - Update APIKEY value in '.env' file
+ - Update API_KEY value in '.env' file
 
 **Running Tests:**
 
