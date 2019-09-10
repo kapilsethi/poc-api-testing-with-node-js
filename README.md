@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/kapilsethi/poc-api-testing-with-node-js.png)](https://travis-ci.org/kapilsethi/poc-api-testing-with-node-js)
+
 # **What's in this repository**
 
 **How to use this repository:**
@@ -13,7 +15,10 @@
 
 **API Key**
  - Register with https://openweathermap.org/stations website and get the API key
- - Update API key in [testData --> testData.json](https://github.com/kapilsethi/poc-api-testing-with-node-js/blob/master/testData/testData.json) file
+ 
+ **Setting up environment variables**
+ - Rename '[.env.example](https://github.com/kapilsethi/poc-api-testing-with-node-js/blob/master/.env.example)' file to '.env'
+ - Update API_KEY value in '.env' file
 
 **Running Tests:**
 
