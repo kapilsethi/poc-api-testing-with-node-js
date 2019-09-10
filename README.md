@@ -5,7 +5,7 @@
 **How to use this repository:**
 ----
 
-**Prerequisite**
+**Prerequisite:**
 
 - Need to have ````node.js```` installed on the machine (version "^v10.15.x")
 
@@ -13,37 +13,40 @@
 
 - Run '````npm install````' command
 
-**API Key**
+**API key:**
  - Register with https://openweathermap.org/stations website and get the API key
  
- **Setting up environment variables**
+ **Setting up environment variables:**
  - Rename '[.env.example](https://github.com/kapilsethi/poc-api-testing-with-node-js/blob/master/.env.example)' file to '.env'
  - Update API_KEY value in '.env' file
 
-**Running Tests:**
+**Running tests:**
 
 - Run '````npm test````' command to run all the tests
 - Run '````npm run generatereport````' command to generate html report of the test execution results
 - Run '````npm run rtag````' command to run the tests and generate html report
 
-**Test Execution Report:**
+**Test execution report:**
 
 - Test execution report can be found in './allure-results' and './allure-report' locations
 
 **Features:**
 ----
 
-- Test framework:_
+- _Test framework:_
     - Mocha
 
 - _Assertion library:_
     - Chai
 
-- _Reporting framework_:
+- _Reporting framework:_
     - Allure
 
-- _HTTP client_:
+- _HTTP client:_
     - [Request](https://github.com/request/request)
+
+- _CI:_
+    - Travis CI
 
 **Example API:**
 ----
@@ -54,7 +57,7 @@
 ----
 
 - Sometime 'Delete station test' fails as the request takes more than 2000ms to respond <br />
-    _How to fix_: Increase the timeout. Just add in [package.json](https://github.com/kapilsethi/poc-api-testing-with-node-js/blob/master/package.json) under scripts
+    _How to fix:_ Increase the timeout. Just add in [package.json](https://github.com/kapilsethi/poc-api-testing-with-node-js/blob/master/package.json) under scripts
     ```json
     "test": "./node_modules/.bin/mocha --timeout 10000 --reporter mocha-allure-reporter",
     "generatereport": "allure generate --clean && allure open",
