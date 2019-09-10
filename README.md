@@ -13,7 +13,10 @@
 
 **API Key**
  - Register with https://openweathermap.org/stations website and get the API key
- - Update API key in [testData --> testData.json](https://github.com/kapilsethi/poc-api-testing-with-node-js/blob/master/testData/testData.json) file
+ 
+ **Setting up environment variables**
+ - Rename '[.env.example](https://github.com/kapilsethi/poc-api-testing-with-node-js/blob/master/.env.example)' file to '.env'
+ - Update APIKEY value in '.env' file
 
 **Running Tests:**
 

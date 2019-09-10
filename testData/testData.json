@@ -1,4 +1,3 @@
 {
-    "url": "http://api.openweathermap.org/data/3.0/stations",
-    "apiKey": ""
+    "url": "http://api.openweathermap.org/data/3.0/stations"
 }

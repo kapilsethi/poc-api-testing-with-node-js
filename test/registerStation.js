@@ -1,3 +1,4 @@
+require('dotenv').config();
 var chai = require('chai');
 var expect = chai.expect;
 var ApiHelper = require('../support/apiHelper');
@@ -7,6 +8,15 @@ var stationTestData = require('./../testData/stationTestData.json');
 describe('Register station -->', () => {
     var apiHelper = new ApiHelper();
     var responseId;
+    var apiKey;
+    if(process.env.API_KEY) { 
+        console.log('###########Required API_KEY is set!###########'); 
+        apiKey = process.env.API_KEY;
+    }
+    else { 
+        console.log('###########Required API_KEY is NOT set!###########'); 
+    }
+    
 
     it('should NOT be able to register station when the api key is NOT provided in the request', async () => {
         var response = await apiHelper.postRequestMethod(testData["url"], '', '');
@@ -17,7 +27,7 @@ describe('Register station -->', () => {
     describe('Success scenario --> ', () => {
         stationTestData.forEach(stationData => {
             it('should be able to register station when the api key is provided in the request', async () => {
-                var result = await apiHelper.postRequestMethod(testData["url"], testData["apiKey"], stationData);
+                var result = await apiHelper.postRequestMethod(testData["url"], apiKey, stationData);
                 var response = result.response;
                 responseId = response["ID"];
                 expect(response["external_id"]).to.equal(stationData.external_id);
@@ -31,7 +41,7 @@ describe('Register station -->', () => {
             it('should be able to get registerted station', async () => {
                 var updatedUrl = testData["url"] + '/' + responseId;
                 console.log('updatedUrl in register -->', updatedUrl);
-                var response = await apiHelper.getRequestMethod(updatedUrl, testData["apiKey"]);
+                var response = await apiHelper.getRequestMethod(updatedUrl, apiKey);
                 expect(response["external_id"]).to.equal(stationData.external_id);
                 expect(response["name"]).to.equal(stationData.name);
                 expect(response["latitude"]).to.equal(stationData.latitude);
@@ -46,9 +56,9 @@ describe('Register station -->', () => {
                 // Delete the registered station
                 var updatedUrl = testData["url"] + '/' + responseId;
                 console.log('updatedUrl in delete -->', updatedUrl);
-                await apiHelper.deleteRequestMethod(updatedUrl, testData["apiKey"]);
+                await apiHelper.deleteRequestMethod(updatedUrl, apiKey);
                 // Check if station is deleted successfully
-                var res = await apiHelper.getRequestMethod(updatedUrl, testData["apiKey"]);
+                var res = await apiHelper.getRequestMethod(updatedUrl, apiKey);
                 expect(res.statusCode).to.equal(404);
                 expect(res.error.message).to.equal('Station not found');
                 console.log('----------------------------------------------------');
