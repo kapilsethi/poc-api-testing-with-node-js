@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/kapilsethi/poc-api-testing-with-node-js.png)](https://travis-ci.org/kapilsethi/poc-api-testing-with-node-js)
+
 # **What's in this repository**
 
 **How to use this repository:**
