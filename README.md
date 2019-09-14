@@ -20,8 +20,10 @@
  - Rename '[.env.example](https://github.com/kapilsethi/poc-api-testing-with-node-js/blob/master/.env.example)' file to '.env'
  - Update API_KEY value in '.env' file
 
-**Running tests:**
+**Using linting utility:**
+- Run '````npm run lint````' command to run eslint
 
+**Running tests:**
 - Run '````npm test````' command to run all the tests
 - Run '````npm run generatereport````' command to generate html report of the test execution results
 - Run '````npm run rtag````' command to run the tests and generate html report
@@ -47,6 +49,12 @@
 
 - _CI:_
     - Travis CI
+
+- _Linting Utility:_
+    - ESLint (extends recommened rules. Details can be found [here](https://eslint.org/docs/rules/))
+
+- _Pre-Commit hook:_
+    - [pre-commit](https://www.npmjs.com/package/pre-commit) npm package to run linting utility before commit  
 
 **Example API:**
 ----
