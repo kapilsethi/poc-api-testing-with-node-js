@@ -22,7 +22,7 @@ class ApiHelper {
             // console.log('get request error -->', error);
             return error;
         }
-    };
+    }
 
     async postRequestMethod(url, apiKey, requestBody) {
         var responseStatusCode;
@@ -45,7 +45,7 @@ class ApiHelper {
             }
         };
         try {
-            const res = await request(options, function(error, response, body) {
+            const res = await request(options, function(error, response) {
                 responseStatusCode = response.statusCode;
             });
             // console.log('post request response -->', response);
@@ -59,7 +59,7 @@ class ApiHelper {
             // console.log('post request error -->', response);
             return error;
         }
-    };
+    }
 
     async deleteRequestMethod(url, apiKey) {
         const options = {
@@ -82,7 +82,7 @@ class ApiHelper {
             // console.log('delete request error -->', error);
             return error;
         }
-    };
-};
+    }
+}
 
 module.exports = ApiHelper;
