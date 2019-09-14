@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "lint": "./node_modules/.bin/eslint --ignore-path .gitignore .",
+    "lint": "echo 'lint checks...' && ./node_modules/.bin/eslint --ignore-path .gitignore .",
     "test": "./node_modules/.bin/mocha --reporter mocha-allure-reporter",
     "generatereport": "allure generate --clean && allure open",
     "rtag": "./node_modules/.bin/mocha --reporter mocha-allure-reporter && allure generate --clean && allure open"
