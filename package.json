@@ -9,6 +9,9 @@
     "generatereport": "allure generate --clean && allure open",
     "rtag": "./node_modules/.bin/mocha --reporter mocha-allure-reporter && allure generate --clean && allure open"
   },
+  "pre-commit": [
+    "lint"
+  ],
   "keywords": [],
   "author": "Kapil Sethi",
   "license": "ISC",
@@ -18,6 +21,7 @@
     "eslint": "^6.3.0",
     "mocha": "^6.2.0",
     "mocha-allure-reporter": "^1.4.0",
+    "pre-commit": "^1.2.2",
     "request": "^2.88.0",
     "request-promise": "^4.2.4"
   }
