@@ -1,4 +1,7 @@
-const request = require('request-promise');
+import * as request from "request-promise";
+import { getLogger } from "log4js";
+const logger = getLogger();
+logger.level = "debug";
 
 class ApiHelper {
     async getRequestMethod(url, apiKey) {
@@ -14,18 +17,18 @@ class ApiHelper {
             }
         };
         try {
-            const response = await request(options);
-            // console.log('get request response -->', response);
+            const response = await request.get(options);
+            logger.info('get request response -->', response);
             return response;
         }
         catch (error) {
-            // console.log('get request error -->', error);
+            logger.info('get request error -->', error);
             return error;
         }
     }
 
     async postRequestMethod(url, apiKey, requestBody) {
-        var responseStatusCode;
+        let responseStatusCode;
         const options = {
             method: 'POST',
             url: url,
@@ -45,18 +48,17 @@ class ApiHelper {
             }
         };
         try {
-            const res = await request(options, function(error, response) {
+            const res = await request.post(options, function(error, response) {
+                logger.info('post request response -->', response);
                 responseStatusCode = response.statusCode;
             });
-            // console.log('post request response -->', response);
-            // console.log('post request statusCode -->', responseStatusCode);
+            logger.info('post request statusCode -->', responseStatusCode);
             return {
                 response: res,
                 statusCode: responseStatusCode
             };
         }
         catch (error) {
-            // console.log('post request error -->', response);
             return error;
         }
     }
@@ -74,15 +76,16 @@ class ApiHelper {
             }
         };
         try {
-            const response = await request(options);
-            // console.log('delete request response -->', response);
+            const response = await request.delete(options);
+            logger.info('delete request response -->', response);
             return response;
         }
         catch (error) {
-            // console.log('delete request error -->', error);
+            logger.info('delete request error -->', error);
             return error;
         }
     }
 }
 
-module.exports = ApiHelper;
+const apiHelper = new ApiHelper();
+export { apiHelper };
