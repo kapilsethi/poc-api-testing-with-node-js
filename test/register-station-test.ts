@@ -11,9 +11,10 @@ dotenv.config();
 
 describe('Register station -->', () => {
     let responseId;
+    const apiKey = process.env.API_KEY;
 
     it('should NOT be able to register station when the api key is NOT provided in the request', async () => {
-        const response = await apiHelper.postRequestMethod(testData["url"], '', false);
+        const response = await apiHelper.postRequestMethod(testData["baseUrl"], '', '');
         expect(response.status).to.equal(401);
         expect(response.data.message).to.equal('Invalid API key. Please see http://openweathermap.org/faq#error401 for more info.');
     });
@@ -21,7 +22,8 @@ describe('Register station -->', () => {
     describe('Success scenario --> ', () => {
         stationTestData.stations.forEach(stationData => {
             it('should be able to register station when the api key is provided in the request', async () => {
-                const response = await apiHelper.postRequestMethod(testData["url"], stationData, true);
+                const response = await apiHelper.postRequestMethod(
+                    testData["baseUrl"], stationData, apiKey);
                 responseId = response.data.ID;
                 expect(response.data.external_id).to.equal(stationData.external_id);
                 expect(response.data.name).to.equal(stationData.name);
@@ -33,9 +35,9 @@ describe('Register station -->', () => {
             });
         
             it('should be able to get registerted station', async () => {
-                const updatedUrl = testData["url"] + '/' + responseId;
+                const updatedUrl = testData["baseUrl"] + '/' + responseId;
                 logger.info('updatedUrl in register -->', updatedUrl);
-                const response = await apiHelper.getRequestMethod(updatedUrl);
+                const response = await apiHelper.getRequestMethod(updatedUrl, apiKey);
                 expect(response.external_id).to.equal(stationData.external_id);
                 expect(response.name).to.equal(stationData.name);
                 expect(response.latitude).to.equal(stationData.latitude);
@@ -46,13 +48,15 @@ describe('Register station -->', () => {
 
             it('should be able to delete the registered station', async () => {
                 // Delete the registered station
-                const updatedUrl = testData["url"] + '/' + responseId;
+                const updatedUrl = testData["baseUrl"] + '/' + responseId;
                 logger.info('updatedUrl in delete -->', updatedUrl);
-                const deleteRequestResponse = await apiHelper.deleteRequestMethod(updatedUrl);
+                const deleteRequestResponse = await apiHelper.deleteRequestMethod(
+                    updatedUrl, apiKey);
                 expect(deleteRequestResponse.status).to.equal(204);
                 expect(deleteRequestResponse.statusText).to.equal("No Content");
                 // Check if station is deleted successfully
-                const res = await apiHelper.getRequestMethod(updatedUrl);
+                const res = await apiHelper.getRequestMethod(
+                    updatedUrl, apiKey);
                 expect(res.status).to.equal(404);
                 expect(res.data.message).to.equal('Station not found');
                 logger.info('Registered station ' + responseId + ' is not found which means it is deleted successfully');

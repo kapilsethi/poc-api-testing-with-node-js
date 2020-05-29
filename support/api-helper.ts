@@ -6,7 +6,7 @@ logger.level = "debug";
 class ApiHelper {
     timeout = 10000;
 
-    async postRequestMethod(url, requestBody, useApiKey) {
+    async postRequestMethod(url, requestBody, apiKey) {
         try {
             const response = await axios({
                 method: 'post',
@@ -15,16 +15,10 @@ class ApiHelper {
                     'content-type': 'application/json'
                 },
                 params: {
-                    APPID: await this.getApiLKey(useApiKey)
+                    APPID: apiKey
                 },
                 timeout: this.timeout,
-                data: {
-                    "external_id": requestBody.external_id,
-                    "name": requestBody.name,
-                    "latitude": requestBody.latitude,
-                    "longitude": requestBody.longitude,
-                    "altitude": requestBody.altitude
-                }
+                data: requestBody
             });
             return response;
         }
@@ -33,17 +27,16 @@ class ApiHelper {
         }
     }
 
-    async getRequestMethod(url) {
+    async getRequestMethod(url, apiKey) {
         try {
             const response = await axios({
                 method: 'get',
                 url: url,
-                // baseURL: testData["url"],
                 headers: {
                     'content-type': 'application/json'
                 },
                 params: {
-                    APPID: await this.getApiLKey(true)
+                    APPID: apiKey
                 },
                 timeout: this.timeout
             });
@@ -54,7 +47,7 @@ class ApiHelper {
         }
     }
 
-    async deleteRequestMethod(url) {
+    async deleteRequestMethod(url, apiKey) {
         try {
             const response = await axios({
                 method: 'delete',
@@ -63,7 +56,7 @@ class ApiHelper {
                     'content-type': 'application/json'
                 },
                 params: {
-                    APPID: await this.getApiLKey(true)
+                    APPID: apiKey
                 },
                 timeout: this.timeout
             });
@@ -72,10 +65,6 @@ class ApiHelper {
         catch(err) {
             return this.catchError(err);
         }
-    }
-
-    private async getApiLKey(useApiKey) {
-        return useApiKey? process.env.API_KEY : '';
     }
 
     private catchError(err) {
