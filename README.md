@@ -44,7 +44,7 @@
     - Allure
 
 - _HTTP client:_
-    - [Request](https://github.com/request/request)
+    - [Axios](https://github.com/axios/axios)
 
 - _CI:_
     - Travis CI
@@ -63,12 +63,15 @@
 **Troubleshooting:**
 ----
 
-- Sometime 'Delete station test' fails as the request takes more than 2000ms to respond <br />
-    _How to fix:_ Increase the timeout. Just add in [package.json](https://github.com/kapilsethi/poc-api-testing-with-node-js/blob/master/package.json) under scripts
-    ```json
-    "test": "./node_modules/.bin/mocha -r ts-node/register --unhandled-rejections=warn test/**/*.ts",
-    "generate:report": "allure generate --clean && allure open",
-    ```
+Error: If test fails with '_Timeout of 2000ms exceeded. For async tests and hooks, ensure "done()" is called;_'
+
+then increase the timeout in [package.json](https://github.com/kapilsethi/poc-api-testing-with-node-js/blob/master/package.json) <br />
+
+`
+"test": "./node_modules/.bin/mocha -r ts-node/register --unhandled-rejections=warn --timout 10000 test/**/*.ts",
+`
+
+<br />for more details refer to [mocha issue](https://github.com/mochajs/mocha/issues/2025)
 
 **Have a feedback?**
 ---
