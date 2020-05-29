@@ -63,7 +63,15 @@
 **Troubleshooting:**
 ----
 
-N/A
+Error: If test fails with '_Timeout of 2000ms exceeded. For async tests and hooks, ensure "done()" is called;_'
+
+then increase the timeout in [package.json](https://github.com/kapilsethi/poc-api-testing-with-node-js/blob/master/package.json) <br />
+
+`
+"test": "./node_modules/.bin/mocha -r ts-node/register --unhandled-rejections=warn --timout 10000 test/**/*.ts",
+`
+
+<br />for more details refer to [mocha issue](https://github.com/mochajs/mocha/issues/2025)
 
 **Have a feedback?**
 ---
