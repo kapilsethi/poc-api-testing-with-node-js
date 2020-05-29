@@ -3,7 +3,7 @@ import { getLogger } from "log4js";
 import { expect } from "chai";
 import * as testData from "../test-data/test-data.json";
 import * as stationTestData from "../test-data/station-test-data.json";
-import { apiHelper } from '../support/api-helper';
+import { apiHelper } from '../helpers/api-helper';
 
 const logger = getLogger();
 logger.level = "debug";
