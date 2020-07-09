@@ -52,7 +52,7 @@
     - Travis CI
 
 - _Mock:_
-    - Wiremock standalone
+    - Wiremock standalone docker image
 
 - _Linting Utility:_
     - ESLint (extends typescript recommened rules. Details can be found [here](https://github.com/typescript-eslint/typescript-eslint/tree/master/packages/eslint-plugin))
