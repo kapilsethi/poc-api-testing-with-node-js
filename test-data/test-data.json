@@ -6,7 +6,7 @@
     },
     "mock":
     {
-        "baseUrl": "http://localhost:9999/",
+        "baseUrl": "http://localhost:8080/",
         "stationsUrl": "data/3.0/stations",
         "validApiKey": "abcdefg1234567890hijklmnopqrst",
         "deleteValidApiKey": "abcdefg1234567890hijklmnopqrst1234567890"
