@@ -5,7 +5,7 @@ services:
   -docker
 before:install:
   - docker pull rodolpheche/wiremock
-  - docker run --rm -p 8080:8080 rodolpheche/wiremock
+  - docker run -d -p 8080:8080 rodolpheche/wiremock
 before_script:
   - npm install
   - npm run lint
