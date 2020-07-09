@@ -1,6 +1,11 @@
 language: node_js
 node_js:
   - "stable"
+services:
+  -docker
+before:install:
+  - docker pull rodolpheche/wiremock
+  - docker run --rm -p 9999:9999 rodolpheche/wiremock
 before_script:
   - npm install
   - npm run lint
