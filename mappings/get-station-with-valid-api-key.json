@@ -1,0 +1,24 @@
+{
+    "mappings": [
+        {
+            "request": {
+                "method": "GET",
+                "url": "/data/3.0/stations/5asdf6ghjk7lqwe8rtyu?APPID=abcdefg1234567890hijklmnopqrst"
+            },
+            "response": {
+                "status": 200,
+                "bodyFileName": "get-registered-station-response.json" 
+            }
+        },
+        {
+            "request": {
+                "method": "GET",
+                "url": "/data/3.0/stations/5asdf6ghjk7lqwe8rtyu?APPID=abcdefg1234567890hijklmnopqrst1234567890"
+            },
+            "response": {
+                "status": 404,
+                "bodyFileName": "station-not-found-response.json" 
+            }
+        }
+    ]
+}

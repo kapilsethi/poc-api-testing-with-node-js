@@ -19,6 +19,8 @@
  **Setting up environment variables:**
  - Rename '[.env.example](https://github.com/kapilsethi/poc-api-testing-with-node-js/blob/master/.env.example)' file to '.env'
  - Update API_KEY value in '.env' file
+ - Set TEST_ENV="prod" for running tests against the production api Or
+ - Set TEST_ENV="mock" for running tests against mocks
 
 **Using linting utility:**
 - Run '````npm run lint````' command to run eslint
@@ -48,6 +50,9 @@
 
 - _CI:_
     - Travis CI
+
+- _Mock:_
+    - Wiremock standalone
 
 - _Linting Utility:_
     - ESLint (extends typescript recommened rules. Details can be found [here](https://github.com/typescript-eslint/typescript-eslint/tree/master/packages/eslint-plugin))

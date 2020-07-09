@@ -1,0 +1,14 @@
+{
+    "mappings" : [
+        {
+            "request": {
+                "method": "POST",
+                "url": "/data/3.0/stations?APPID=abcdefg1234567890hijklmnopqrst"
+        },
+            "response": {
+                "status": 201,
+                "bodyFileName": "register-station-with-valid-api-key-response.json" 
+            }
+        }
+    ]
+  }

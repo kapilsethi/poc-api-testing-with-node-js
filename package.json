@@ -6,6 +6,7 @@
   "scripts": {
     "lint": "echo 'lint checks...' && ./node_modules/.bin/eslint --ignore-path .gitignore '*/**/*.ts'",
     "test": "./node_modules/.bin/mocha -r ts-node/register --unhandled-rejections=warn test/**/*.ts",
+    "start:mock:server": "java -jar wiremock-standalone-2.26.3.jar --port 9999",
     "generate:report": "allure generate --clean && allure open"
   },
   "pre-commit": [
