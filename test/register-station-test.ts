@@ -72,7 +72,6 @@ describe('Register station -->', () => {
             expect(response.status, "delete station data api response status code mismatch").
                 to.equal(404);
             expect(response.data.message).to.equal('Station not found');
-            logger.info('Registered station ' + stationId + ' is not found which means it is deleted successfully');
         });
     });
 });
