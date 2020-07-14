@@ -1,10 +1,12 @@
 {
     "request": {
         "method": "POST",
-        "url": "/data/3.0/stations?APPID="
+        "url": "/data/3.0/stations?APPID=invalid"
     },
     "response": {
         "status": 401,
-        "bodyFileName": "invalid-api-key-response.json" 
+        "jsonBody": {
+            "message": "Invalid API key. Please see http://localhost:8080/faq#error401 for more info."
+        }
     }
   }

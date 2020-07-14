@@ -4,12 +4,17 @@ import { expect } from "chai";
 import * as testData from "../test-data/test-data.json";
 import * as stationTestData from "../test-data/station-test-data.json";
 import { apiHelper } from '../helpers/api-helper';
+import { mockHelper } from '../helpers/mock-helper';
 
 const logger = getLogger();
 logger.level = "debug";
 dotenv.config();
 
 describe('Register station -->', () => {
+    before(async () => {
+        await mockHelper.addStub();
+    });
+
     let stationId;
     const testEnv = process.env.TEST_ENV;
     const apiKey = testEnv === "prod" ?

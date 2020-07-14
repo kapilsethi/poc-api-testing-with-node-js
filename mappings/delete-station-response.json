@@ -5,6 +5,6 @@
     },
     "response": {
         "status": 204,
-        "body": "" 
+        "jsonBody": ""
     }
 }
