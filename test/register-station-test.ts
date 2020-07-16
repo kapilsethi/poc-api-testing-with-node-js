@@ -23,7 +23,7 @@ describe('Register station -->', async () => {
     const url = `${testData[testEnv]["baseUrl"]}${testData[testEnv]["stationsUrl"]}`;
 
     it('should NOT be able to register station when the api key is NOT provided in the request', async () => {
-        const response = await apiHelper.postRequestMethod(url, '', "invalid");
+        const response = await apiHelper.postRequestMethod(url, '', '');
         const expectedUrl = `${testData[testEnv]["baseUrl"]}`.replace("api.", "");
         expect(response.status, "post station data api with no api key response status code mismatch").to.equal(401);
         expect(response.data.message).to.equal(`Invalid API key. Please see ${expectedUrl}faq#error401 for more info.`);

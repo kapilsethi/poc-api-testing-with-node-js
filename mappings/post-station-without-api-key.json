@@ -1,7 +1,7 @@
 {
     "request": {
         "method": "POST",
-        "url": "/data/3.0/stations?APPID=invalid"
+        "url": "/data/3.0/stations?APPID="
     },
     "response": {
         "status": 401,
