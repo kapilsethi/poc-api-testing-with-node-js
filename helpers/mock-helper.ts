@@ -7,6 +7,7 @@ const logger = getLogger();
 logger.level = "debug";
 
 class MockHelper {
+    endpoint = `${testData[process.env.TEST_ENV]["baseUrl"]}__admin/mappings`;
     async addStub() {
         const testEnv = process.env.TEST_ENV;
         if(testEnv !== "mock") {
@@ -15,15 +16,34 @@ class MockHelper {
         }
         const folderPath = path.resolve(__dirname, '../mappings');
         const files = fs.readdirSync(folderPath);
-        const endpoint = `${testData[process.env.TEST_ENV]["baseUrl"]}__admin/mappings`;
-        files.forEach(async file => {
-                const fileContent =  await this.getFilePath(file);
-                await apiHelper.postRequestMethod(endpoint,fileContent,'');
-            });
+        for(const file of files) {
+            const fileContent =  await this.getFilePath(file);
+            await apiHelper.postRequestMethod(this.endpoint,fileContent, '');
+        }
+        await this.verifyRequest(files.length);
     }
 
     private async getFilePath(fileName) {
         return await JSON.parse(fs.readFileSync(path.resolve(__dirname, `../mappings/${fileName}`), "utf-8"));
+    }
+
+    private async verifyRequest(expectedNumberOfMocks) {
+        let flag = false;
+        let count = 0;
+        while(flag == false) {
+            if(count == 10) {
+                break;
+            }
+            const response = await apiHelper.getRequestMethod(this.endpoint, '');
+            flag = response.data.meta.total === expectedNumberOfMocks;
+            await this.sleep(500);
+            count = count + 1;
+        }
+    }
+
+    private async sleep(ms) {
+        console.log(`sleeping for ${ms} ms`);
+        return await new Promise(resolve => setTimeout(resolve, ms));
     }
 }
 
