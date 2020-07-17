@@ -1,9 +1,15 @@
 language: node_js
 node_js:
   - "stable"
+services:
+  -docker
+before:install:
+  - docker pull rodolpheche/wiremock
+  - docker run -d -p 8080:8080 rodolpheche/wiremock
 before_script:
   - npm install
   - npm run lint
-
+script:
+  - TEST_ENV=mock npm test
 env:
   secure: "WehsS8wVbohBXubmufoYBZsukjr+3yF91drLuZTbEOtu6YA5HdVBxO85FaFXz+QJo6Ub124nLQRavW8auweROfrXG4RGV++U7AkKwb3gVKf4RR5sqV8FE215stRd0rbLS6YBJp8Uqp1ESc2PzYOc5S7CcxtWXvBGzqp2jQWyJSNxft7S2hKzE5Gkvj81ybZiUknVKUJ5r3maV6N1+4iasTsxE2FNYyyt5t60wEo4Fqb6Jvxkomb/z0Ed8+udMtPEPcMP6pFFyFFIBdjFArpIqQ0qf8NOtsM6AWZp2MkwBTfj3qJlZwd6oTYYv1n2IA5iF4gfiC2P1WIiELaFgI5mZXnLi5Eq1GsPFybpXpCfWL4Q/dcpBL/MK39EEODMoGsgpYrLyZe8dJLbQlfCkh9BpKY9Ep1mqNiahHoRoGPzJBNs2lEjfsRQEKU1cGIFvdqeERHxKcJ2omMPDUqoYMHI4mXHYeGCOkzZ+8KgSiW/E6giHzAleSUaJqQgTdyiBsyUvtPwZ0Yb7oR1/M62PxKxCUp2YBxpL2Mf1FMsivlBWjSyidZu6Klg2KmKvOqL5R7FuJxXaM3mr3q5CBvohnGmiC0Z3c4ldZoZteed3LAUn5VRkGwfMFExM5/eBO/b3JGTYF1dQUb7IkCBGk/aklnqXjvxh+f5LW7tohSSKYWDLIs="

@@ -1,0 +1,10 @@
+{
+    "request": {
+        "method": "DELETE",
+        "url": "/data/3.0/stations/5asdf6ghjk7lqwe8rtyu?APPID=abcdefg1234567890hijklmnopqrst"
+    },
+    "response": {
+        "status": 204,
+        "jsonBody": ""
+    }
+}

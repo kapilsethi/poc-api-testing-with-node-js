@@ -40,7 +40,7 @@ class ApiHelper {
                 },
                 timeout: this.timeout
             });
-            return response.data;
+            return response;
         }
         catch (err) {
             return this.catchError(err);
@@ -71,15 +71,19 @@ class ApiHelper {
         if (err.response) {
             // the request went through and a response was returned
             // status code in 3xx / 4xx / 5xx range
-            logger.info(`request went through and an error response was returned with\n
-                message: ${err.response.data.message} and\nstatus code: ${err.response.status}`);
+            logger.info(`
+                request went through and an error response was returned with
+                message: ${err.response.data.message} and
+                status code: ${err.response.status}`);
             return err.response;
 
         } else if (err.request) {
-            logger.info(`request was made but server returned no response\n ${err.request}`);
+            logger.info(
+                `request was made but server returned no response\n ${err.request}`);
             throw err.request;
         } else {
-            logger.info(`somthing went wrong in setting up the request\n ${err.message}`);
+            logger.info(
+                `something went wrong in setting up the request\n ${err.message}`);
             throw err.message;
         }
     }
