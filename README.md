@@ -19,14 +19,18 @@
  **Setting up environment variables:**
  - Rename '[.env.example](https://github.com/kapilsethi/poc-api-testing-with-node-js/blob/master/.env.example)' file to '.env'
  - Update API_KEY value in '.env' file
- - Set TEST_ENV="prod" for running tests against the production api Or
- - Set TEST_ENV="mock" for running tests against mocks
-
+ 
 **Using linting utility:**
 - Run '````npm run lint````' command to run eslint
 
+**Starting wiremock:**
+- Download wiremock standalone JAR from [here](http://wiremock.org/docs/download-and-installation/)
+- Run '````start:mock:server````' command to start the wiremock in standalone mode
+
 **Running tests:**
-- Run '````npm test````' command to run all the tests
+- Run '````TEST_ENV=prod npm test````' command to run all the tests against prod
+- Run '````TEST_ENV=prod npm test````' command to run all the tests against prod
+- Run '````TEST_ENV=mock npm test````' command to run all the tests against mock
 - Run '````npm run generate:report````' command to generate html report of the test execution results
 
 **Test execution report:**
@@ -68,12 +72,12 @@
 **Troubleshooting:**
 ----
 
-Error: If test fails with '_Timeout of 2000ms exceeded. For async tests and hooks, ensure "done()" is called;_'
+Error: If test fails with '_Timeout of 10000ms exceeded. For async tests and hooks, ensure "done()" is called;_'
 
 then increase the timeout in [package.json](https://github.com/kapilsethi/poc-api-testing-with-node-js/blob/master/package.json) <br />
 
 `
-"test": "./node_modules/.bin/mocha -r ts-node/register --unhandled-rejections=warn --timout 10000 test/**/*.ts",
+"./node_modules/.bin/mocha --timeout 20000 -r ts-node/register --unhandled-rejections=warn test/**/*.ts",
 `
 
 <br />for more details refer to [mocha issue](https://github.com/mochajs/mocha/issues/2025)
