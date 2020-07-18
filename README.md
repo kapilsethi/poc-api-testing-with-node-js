@@ -25,13 +25,11 @@
 
 **Starting wiremock:**
 - Download wiremock standalone JAR from [here](http://wiremock.org/docs/download-and-installation/)
-- Run '````start:mock:server````' command to start the wiremock in standalone mode
+- start the wiremock in standalone mode using '````java -jar wiremock-standalone-<version>.jar --port 8080````' 
 
 **Running tests:**
 - Run '````TEST_ENV=prod npm test````' command to run all the tests against prod
-- Run '````TEST_ENV=prod npm test````' command to run all the tests against prod
 - Run '````TEST_ENV=mock npm test````' command to run all the tests against mock
-- Run '````npm run generate:report````' command to generate html report of the test execution results
 
 **Test execution report:**
 
@@ -47,7 +45,7 @@
     - Chai
 
 - _Reporting framework:_
-    - Allure
+    - Mochawesome
 
 - _HTTP client:_
     - [Axios](https://github.com/axios/axios)
@@ -85,4 +83,4 @@ then increase the timeout in [package.json](https://github.com/kapilsethi/poc-ap
 **Have a feedback?**
 ---
 
-If you have any feedback or question, please email me at kapil.sethi9@gmail.com
+If you have any feedback or question, please email me at kapil.sethi9+github@gmail.com
