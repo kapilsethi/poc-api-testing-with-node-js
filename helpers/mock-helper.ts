@@ -42,7 +42,7 @@ class MockHelper {
     }
 
     private async sleep(ms) {
-        console.log(`sleeping for ${ms} ms`);
+        logger.info(`sleeping for ${ms} ms`);
         return await new Promise(resolve => setTimeout(resolve, ms));
     }
 }
