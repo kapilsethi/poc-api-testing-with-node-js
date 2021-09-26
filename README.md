@@ -30,6 +30,7 @@
 **Running tests:**
 - Run '````TEST_ENV=prod npm test````' command to run all the tests against prod
 - Run '````TEST_ENV=mock npm test````' command to run all the tests against mock
+- Run `npm run generate:report` command to open html report of the test execution results
 
 **Test execution report:**
 
