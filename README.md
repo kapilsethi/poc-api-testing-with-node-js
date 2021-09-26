@@ -33,7 +33,7 @@
 
 **Test execution report:**
 
-- Test execution report can be found in './allure-results' and './allure-report' locations
+- Test execution report can be found in './mochawesome-report'
 
 **Features:**
 ----
