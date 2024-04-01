@@ -1,7 +1,4 @@
 import axios from "axios";
-import { getLogger } from "log4js";
-const logger = getLogger();
-logger.level = "debug";
 
 class ApiHelper {
   timeout = 10000;
@@ -68,18 +65,18 @@ class ApiHelper {
     if (err.response) {
       // the request went through and a response was returned
       // status code in 3xx / 4xx / 5xx range
-      logger.info(`
+      console.log(`
                 request went through and an error response was returned with
                 message: ${err.response.data.message} and
                 status code: ${err.response.status}`);
       return err.response;
     } else if (err.request) {
-      logger.info(
+      console.log(
         `request was made but server returned no response\n ${err.request}`
       );
       throw err.request;
     } else {
-      logger.info(
+      console.log(
         `something went wrong in setting up the request\n ${err.message}`
       );
       throw err.message;

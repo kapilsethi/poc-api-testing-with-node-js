@@ -2,28 +2,25 @@ import * as fs from "fs";
 import * as testData from "../test-data/test-data.json";
 import * as path from "path";
 import { apiHelper } from "./api-helper";
-import { getLogger } from "log4js";
-const logger = getLogger();
-logger.level = "debug";
 
 class MockHelper {
   endpoint = `${testData[process.env.TEST_ENV]["baseUrl"]}__admin/mappings`;
   async addStub() {
     const testEnv = process.env.TEST_ENV;
     if (testEnv !== "mock") {
-      logger.info("not running against mock so not loading any mock responses");
+      console.log("not running against mock so not loading any mock responses");
       return;
     }
     const folderPath = path.resolve(__dirname, "../mappings");
     const files = fs.readdirSync(folderPath);
     for (const file of files) {
-      const fileContent = await this.getFilePath(file);
+      const fileContent = await this.readFile(file);
       await apiHelper.postRequestMethod(this.endpoint, fileContent, "");
     }
     await this.verifyRequest(files.length);
   }
 
-  private async getFilePath(fileName) {
+  private async readFile(fileName) {
     return await JSON.parse(
       fs.readFileSync(
         path.resolve(__dirname, `../mappings/${fileName}`),
@@ -47,7 +44,7 @@ class MockHelper {
   }
 
   private async sleep(ms) {
-    logger.info(`sleeping for ${ms} ms`);
+    console.log(`sleeping for ${ms} ms`);
     return await new Promise((resolve) => setTimeout(resolve, ms));
   }
 }
