@@ -21,7 +21,7 @@ describe("Register station --> should be able to register station when valid api
       await mockHelper.addStub();
     });
 
-    it("Setup - get the api key and set the post station register api endpoint", async () => {
+    it("Setup - create station register request - get the api key and set the post api endpoint", async () => {
       apiKey =
         testEnv === "prod"
           ? process.env.API_KEY
@@ -31,27 +31,27 @@ describe("Register station --> should be able to register station when valid api
   });
 
   describe("Test starts here ", async () => {
-    it("make a post request to register station with required api key", async () => {
+    it("create station register request - make a post api request with required api key", async () => {
       postRegisterStationResponse = await apiHelper.postRequestMethod(
         url,
         stationTestData,
         apiKey
       );
       console.log(
-        "post station register api response: ",
+        "create station register post api response: ",
         postRegisterStationResponse.data
       );
     });
 
-    it("validate status code and status text in the post register station api response", async () => {
+    it("create station register response - validate status code and status text in the post api response", async () => {
       expect(
         postRegisterStationResponse.status,
-        "post station data api response status code mismatch"
+        "create station register post api response status code mismatch"
       ).to.equal(201);
       expect(postRegisterStationResponse.statusText).to.equal("Created");
     });
 
-    it("validate external id, name and the locations in the post register station api response", async () => {
+    it("create station register response - validate external id, name and the locations in the post api response", async () => {
       expect(postRegisterStationResponse.data.external_id).to.equal(
         stationTestData.external_id
       );
@@ -69,7 +69,7 @@ describe("Register station --> should be able to register station when valid api
       );
     });
 
-    it("fetch the registered station id from post register station api response and create get registered station url for api call", async () => {
+    it("create station register response- fetch the registered station id from the post api response and create get registered station url for api call", async () => {
       stationId = postRegisterStationResponse.data.ID;
       urlForGetRegisteredStationApi = `${url}/${stationId}`;
       console.log(
@@ -78,7 +78,7 @@ describe("Register station --> should be able to register station when valid api
       );
     });
 
-    it("make a get registered station api call", async () => {
+    it("get registered station request - make a get api call", async () => {
       getRegisteredStationResponse = await apiHelper.getRequestMethod(
         urlForGetRegisteredStationApi,
         apiKey
@@ -90,7 +90,7 @@ describe("Register station --> should be able to register station when valid api
       );
     });
 
-    it("validate status code and status text in the get registered station api response", async () => {
+    it("get registered station response - validate status code and status text in the get api response", async () => {
       expect(
         getRegisteredStationResponse.status,
         "get registered station api response status code mismatch"
@@ -99,7 +99,7 @@ describe("Register station --> should be able to register station when valid api
       console.log("Station " + stationId + " is registered successfully");
     });
 
-    it("validate external id, name and the locations in the get registered station api response", async () => {
+    it("get registered station response - validate external id, name and the locations in the get api response", async () => {
       expect(getRegisteredStationResponse.data.external_id).to.equal(
         stationTestData.external_id
       );
@@ -119,7 +119,7 @@ describe("Register station --> should be able to register station when valid api
   });
 
   describe("Tear down --> should be able to delete the registered station ", async () => {
-    it("make a delete registered station api call", async () => {
+    it("delete registered station request - make a delete api call", async () => {
       deleteRegisteredStationResponse = await apiHelper.deleteRequestMethod(
         urlForGetRegisteredStationApi,
         apiKey
@@ -131,7 +131,7 @@ describe("Register station --> should be able to register station when valid api
       );
     });
 
-    it("validate status in the delete registered station api response", async () => {
+    it("delete registered station response - validate status in the delete api response", async () => {
       expect(
         deleteRegisteredStationResponse.status,
         "delete station api response status code mismatch"
@@ -139,7 +139,7 @@ describe("Register station --> should be able to register station when valid api
       expect(deleteRegisteredStationResponse.statusText).to.equal("No Content");
     });
 
-    it("make a get registered station api call after deleting", async () => {
+    it("get registered station request - make a get api call after deleting registered station", async () => {
       const updatedApiKey =
         testEnv === "prod"
           ? process.env.API_KEY
@@ -156,7 +156,7 @@ describe("Register station --> should be able to register station when valid api
       );
     });
 
-    it("should not be getting station as its been deleted", async () => {
+    it("get registered station response - should not be getting station as its been deleted", async () => {
       expect(
         getRegisteredStationAfterDeletingResponse.status,
         "delete station data api response status code mismatch"

@@ -15,24 +15,24 @@ describe("Register station --> should NOT be able to register station when the a
       await mockHelper.addStub();
     });
 
-    it("Setup - set the post station register api endpoint", async () => {
+    it("Setup - create station register request - set the post api endpoint", async () => {
       url = `${testData[testEnv]["baseUrl"]}${testData[testEnv]["stationsUrl"]}`;
     });
 
-    it("Setup - set the post station register api endpoint in the expected response", async () => {
+    it("Setup - create station register response - update the post api endpoint in the expected response", async () => {
       expectedUrl = `${testData[testEnv]["baseUrl"]}`.replace("api.", "");
     });
   });
 
   describe("Test starts here ", async () => {
-    it("make a post request to register station without required api key", async () => {
+    it("create station register request - make a post api request without required api key", async () => {
       response = await apiHelper.postRequestMethod(url, "", "");
     });
 
-    it("validate the api response is as expected", async () => {
+    it("create station register response - validate the api response is as expected", async () => {
       expect(
         response.status,
-        "post station data api with no api key response status code mismatch"
+        "create station register post api response when no api key - status code mismatch"
       ).to.equal(401);
       expect(response.data.message).to.equal(
         `Invalid API key. Please see ${expectedUrl}faq#error401 for more info.`
