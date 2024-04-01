@@ -6,7 +6,8 @@
   "scripts": {
     "lint": "echo 'lint checks...' && ./node_modules/.bin/eslint --ignore-path .gitignore '*/**/*.ts'",
     "test": "./node_modules/.bin/mocha --timeout 10000 -r ts-node/register --unhandled-rejections=warn test/**/*.ts --reporter mochawesome",
-    "start:mock:server": "java -jar wiremock-standalone-2.26.3.jar --port 8080",
+    "start:mock:server": "cd ./scripts && docker-compose -f wiremock-docker-compose.yml up --detach",
+    "stop:mock:server": "cd ./scripts && docker-compose -f wiremock-docker-compose.yml down",
     "generate:report": "open ./mochawesome-report/mochawesome.html"
   },
   "pre-commit": [

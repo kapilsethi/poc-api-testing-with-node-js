@@ -1,14 +1,12 @@
 {
-    "prod": 
-    {
-        "baseUrl": "http://api.openweathermap.org/",
-        "stationsUrl": "data/3.0/stations"
-    },
-    "mock":
-    {
-        "baseUrl": "http://localhost:8080/",
-        "stationsUrl": "data/3.0/stations",
-        "validApiKey": "abcdefg1234567890hijklmnopqrst",
-        "deleteValidApiKey": "abcdefg1234567890hijklmnopqrst1234567890"
-     }
+  "prod": {
+    "baseUrl": "https://api.openweathermap.org/",
+    "stationsUrl": "data/3.0/stations"
+  },
+  "mock": {
+    "baseUrl": "http://localhost:9000/",
+    "stationsUrl": "data/3.0/stations",
+    "validApiKey": "abcdefg1234567890hijklmnopqrst",
+    "deleteValidApiKey": "abcdefg1234567890hijklmnopqrst1234567890"
+  }
 }

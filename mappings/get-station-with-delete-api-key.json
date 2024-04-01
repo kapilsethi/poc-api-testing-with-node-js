@@ -1,13 +1,13 @@
 {
-    "request": {
-        "method": "GET",
-        "url": "/data/3.0/stations/5asdf6ghjk7lqwe8rtyu?APPID=abcdefg1234567890hijklmnopqrst1234567890"
-    },
-    "response": {
-        "status": 404,
-        "jsonBody": {
-            "code": 404001,
-            "message": "Station not found"
-        }
+  "request": {
+    "method": "GET",
+    "url": "/data/3.0/stations/5asdf6ghjk7lqwe8rtyu?APPID=abcdefg1234567890hijklmnopqrst1234567890"
+  },
+  "response": {
+    "status": 404,
+    "jsonBody": {
+      "code": 404001,
+      "message": "Station not found"
     }
+  }
 }
