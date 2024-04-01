@@ -2,86 +2,99 @@
 
 # **What's in this repository**
 
-**How to use this repository:**
-----
+## **How to use this repository:**
 
 **Prerequisite:**
 
-- Need to have ````node.js```` installed on the machine (version "^v12.16.x")
+- Need to have
+- `node.js` (version "^v17.8.0")
+- Rancher desktop (can be downloaded from [rancher website](https://rancherdesktop.io/))
+- docker (if on mac run `brew install docker`)
+- docker compose (if on mac run `brew install docker-compose`)
+
+installed on the local machine
 
 **Setup:**
 
-- Run '````npm install````' command
+- Run '`npm install`' command
 
 **API key:**
- - Register with https://openweathermap.org/stations website and get the API key
- 
- **Setting up environment variables:**
- - Rename '[.env.example](https://github.com/kapilsethi/poc-api-testing-with-node-js/blob/master/.env.example)' file to '.env'
- - Update API_KEY value in '.env' file
- 
-**Using linting utility:**
-- Run '````npm run lint````' command to run eslint
 
-**Starting wiremock:**
+- Register with https://openweathermap.org/stations website and get the API key
+
+**Setting up environment variables:**
+
+- Rename '[.env.example](https://github.com/kapilsethi/poc-api-testing-with-node-js/blob/master/.env.example)' file to '.env'
+- Update API_KEY value in '.env' file
+
+**Using linting utility:**
+
+- Run '`npm run lint`' command to run eslint
+
+**Starting and stopping wiremock:**
+
+- run `npm run start:mock:server` to start the wiremock (should be able to see wiremock test data on [http://localhost:9000/\_\_admin/mappings](http://localhost:9000/__admin/mappings) url) OR
 - Download wiremock standalone JAR from [here](http://wiremock.org/docs/download-and-installation/)
-- start the wiremock in standalone mode using '````java -jar wiremock-standalone-<version>.jar --port 8080````' 
+- start the wiremock in standalone mode using '`java -jar wiremock-standalone-<version>.jar --port 9000`'
+- run `npm run stop:mock:server` to stop the wiremock
 
 **Running tests:**
-- Run '````TEST_ENV=prod npm test````' command to run all the tests against prod
-- Run '````TEST_ENV=mock npm test````' command to run all the tests against mock
+
+- Run '`TEST_ENV=prod npm test`' command to run all the tests against prod
+- Run '`TEST_ENV=mock npm test`' command to run all the tests against mock
 - Run `npm run generate:report` command to open html report of the test execution results
 
 **Test execution report:**
 
 - Test execution report can be found in './mochawesome-report'
 
-**Features:**
-----
+## **Features:**
 
 - _Test framework:_
-    - Mocha
+
+  - Mocha
 
 - _Assertion library:_
-    - Chai
+
+  - Chai
 
 - _Reporting framework:_
-    - Mochawesome
+
+  - Mochawesome
 
 - _HTTP client:_
-    - [Axios](https://github.com/axios/axios)
+
+  - [Axios](https://github.com/axios/axios)
 
 - _CI:_
-    - Travis CI
+
+  - Travis CI
 
 - _Mock:_
-    - Wiremock standalone docker image
+
+  - Wiremock standalone docker image
 
 - _Linting Utility:_
-    - ESLint (extends typescript recommened rules. Details can be found [here](https://github.com/typescript-eslint/typescript-eslint/tree/master/packages/eslint-plugin))
+
+  - ESLint (extends typescript recommened rules. Details can be found [here](https://github.com/typescript-eslint/typescript-eslint/tree/master/packages/eslint-plugin))
 
 - _Pre-Commit hook:_
-    - [pre-commit](https://www.npmjs.com/package/pre-commit) npm package to run linting utility before commit  
+  - [pre-commit](https://www.npmjs.com/package/pre-commit) npm package to run linting utility before commit
 
-**Example API:**
-----
+## **Example API:**
 
 - https://openweathermap.org/stations
 
-**Troubleshooting:**
-----
+## **Troubleshooting:**
 
 Error: If test fails with '_Timeout of 10000ms exceeded. For async tests and hooks, ensure "done()" is called;_'
 
 then increase the timeout in [package.json](https://github.com/kapilsethi/poc-api-testing-with-node-js/blob/master/package.json) <br />
 
-`
-"./node_modules/.bin/mocha --timeout 20000 -r ts-node/register --unhandled-rejections=warn test/**/*.ts",
-`
+`"./node_modules/.bin/mocha --timeout 20000 -r ts-node/register --unhandled-rejections=warn test/**/*.ts",`
 
 <br />for more details refer to [mocha issue](https://github.com/mochajs/mocha/issues/2025)
 
-**Have a feedback?**
----
+## **Have a feedback?**
 
 If you have any feedback or question, please email me at kapil.sethi9+github@gmail.com

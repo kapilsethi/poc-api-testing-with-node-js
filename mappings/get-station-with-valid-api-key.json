@@ -1,20 +1,20 @@
 {
-    "request": {
-        "method": "GET",
-        "url": "/data/3.0/stations/5asdf6ghjk7lqwe8rtyu?APPID=abcdefg1234567890hijklmnopqrst"
-    },
-    "response": {
-        "status": 200,
-        "jsonBody": {
-            "ID": "5efdecf3cca8ce0001f1c002",
-            "updated_at": "2020-07-02T14:19:31.707387414Z",
-            "created_at": "2020-07-02T14:19:31.70738732Z",
-            "external_id": "KS_DEMO_TEST001",
-            "name": "KS Team Demo Test Station 001",
-            "latitude": 33.33,
-            "longitude": -122.43,
-            "altitude": 223,
-            "rank": 10
-        }
+  "request": {
+    "method": "GET",
+    "url": "/data/3.0/stations/5asdf6ghjk7lqwe8rtyu?APPID=abcdefg1234567890hijklmnopqrst"
+  },
+  "response": {
+    "status": 200,
+    "jsonBody": {
+      "ID": "5efdecf3cca8ce0001f1c002",
+      "updated_at": "2020-07-02T14:19:31.707387414Z",
+      "created_at": "2020-07-02T14:19:31.70738732Z",
+      "external_id": "KS_DEMO_TEST001",
+      "name": "KS Team Demo Test Station 001",
+      "latitude": 33.33,
+      "longitude": -122.43,
+      "altitude": 223,
+      "rank": 10
     }
+  }
 }

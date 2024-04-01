@@ -1,0 +1,12 @@
+version: "1.0"
+services:
+  wiremock:
+    image: wiremock/wiremock:3.5.2
+    ports:
+      - "9000:8080"
+    volumes:
+      - ../mock:/home/wiremock
+    stdin_open: true
+    tty: true
+    environment:
+      - TZ=Australia/Melbourne
