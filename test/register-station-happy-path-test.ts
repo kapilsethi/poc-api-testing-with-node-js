@@ -21,7 +21,7 @@ describe("Register station --> should be able to register station when valid api
       await mockHelper.addStub();
     });
 
-    it("Setup - get the api key and set the endpoint url", async () => {
+    it("Setup - get the api key and set the post station register api endpoint", async () => {
       apiKey =
         testEnv === "prod"
           ? process.env.API_KEY

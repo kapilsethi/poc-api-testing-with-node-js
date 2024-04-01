@@ -6,7 +6,6 @@ import { mockHelper } from "../helpers/mock-helper";
 
 describe("Register station --> should NOT be able to register station when the api key is NOT provided in the request ", async () => {
   let url: string;
-  let apiKey: any;
   let response: any;
   let expectedUrl: string;
   const testEnv = process.env.TEST_ENV;
@@ -16,15 +15,11 @@ describe("Register station --> should NOT be able to register station when the a
       await mockHelper.addStub();
     });
 
-    it("Setup - get the api key and set the endpoint url", async () => {
-      apiKey =
-        testEnv === "prod"
-          ? process.env.API_KEY
-          : testData[testEnv]["validApiKey"];
+    it("Setup - set the post station register api endpoint", async () => {
       url = `${testData[testEnv]["baseUrl"]}${testData[testEnv]["stationsUrl"]}`;
     });
 
-    it("Setup - endpoint in the expected response", async () => {
+    it("Setup - set the post station register api endpoint in the expected response", async () => {
       expectedUrl = `${testData[testEnv]["baseUrl"]}`.replace("api.", "");
     });
   });
