@@ -3,8 +3,12 @@ run-name: Automated E2E Tests in ${{ github.event.inputs.environment }} environm
 on:
   workflow_dispatch:
     inputs:
+      branch:
+        description: Branch to checkout?
+        required: true
+        default: master
       environment:
-        description: Select the environment
+        description: Which environment?
         required: true
         type: environment
         default: prod
@@ -14,12 +18,20 @@ concurrency:
   cancel-in-proress: true
 
 jobs:
-  e2e-tests:
-    environment: ${{ github.event.inputs.environment }}
+  setup-runner:
     runs-on: ubuntu-latest
+    outputs:
+      runner: ${{ steps.set-runner.outputs.runner }}
+  e2e-tests:
+    needs: [setup-runner]
+    environment: ${{ github.event.inputs.environment }}
+    runs-on: ${{ needs.setup-runner.outputs.runner }}
     steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: "0"
+          ref: ${{ inputs.branch }}
+      - uses: actions/setup-node@v4
         with:
           node-version: "18.x"
           registry-url: "https://npm.pkg.github.com"
@@ -34,7 +46,7 @@ jobs:
         run: npm test
       - name: Upload E2E Tests Result
         if: ${{ always() }}
-        uses: actions/upload-aftifact@v3
+        uses: actions/upload-aftifact@v4
         with:
           name: test-execution-results
           path: ./test-results/
