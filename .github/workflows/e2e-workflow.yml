@@ -13,8 +13,11 @@ on:
       environment:
         description: Which environment?
         required: true
-        type: choice
         default: prod
+        type: choice
+        options:
+          - prod
+          - mock
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
