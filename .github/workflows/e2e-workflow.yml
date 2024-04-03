@@ -1,0 +1,40 @@
+name: Executed Automated E2E Tests
+run-name: Automated E2E Tests in ${{ github.event.inputs.environment }} environment by ${{ github.actor }}
+on:
+  workflow_dispatch:
+    inputs:
+      environment:
+        description: Select the environment
+        required: true
+        type: environment
+        default: prod
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-proress: true
+
+jobs:
+  e2e-tests:
+    environment: ${{ github.event.inputs.environment }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: "18.x"
+          registry-url: "https://npm.pkg.github.com"
+      - name: Install Dependencies
+        run: npm install
+      - name: Make .env file
+        run: |
+          TEMPLATE_FILE=.env.example
+          TARGET_FILE=.env
+          cp $TEMPLATE_FILE $TARGET_FILE
+      - name: Run E2E Tests in ${{ github.event.inputs.environment }} environment
+        run: npm test
+      - name: Upload E2E Tests Result
+        if: ${{ always() }}
+        uses: actions/upload-aftifact@v3
+        with:
+          name: test-execution-results
+          path: ./test-results/
