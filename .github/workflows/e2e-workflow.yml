@@ -10,10 +10,10 @@ on:
         description: Which environment?
         required: true
         default: prod
-        type: choice
-        options:
-          - prod
-          - mock
+        type: environment
+        # options:
+        #   - prod
+        #   - mock
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
