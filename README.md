@@ -31,11 +31,14 @@ installed on the local machine
 
 - Run '`npm run lint`' command to run eslint
 
-**Starting and stopping wiremock:**
+**Starting wiremock:**
 
-- run `npm run start:mock:server` to start the wiremock (should be able to see wiremock test data on [http://localhost:9000/\_\_admin/mappings](http://localhost:9000/__admin/mappings) url) OR
+- run `npm run start:mock:server` to start the wiremock (should be able to see wiremock test data on [wiremock mappping page](http://localhost:9000/__admin/mappings) url) OR
 - Download wiremock standalone JAR from [here](http://wiremock.org/docs/download-and-installation/)
 - start the wiremock in standalone mode using '`java -jar wiremock-standalone-<version>.jar --port 9000`'
+
+**Stopping wiremock:**
+
 - run `npm run stop:mock:server` to stop the wiremock
 
 **Running tests:**
@@ -52,15 +55,11 @@ installed on the local machine
 
 - _Test framework:_
 
-  - Mocha
-
-- _Assertion library:_
-
-  - Chai
+  - Jest
 
 - _Reporting framework:_
 
-  - Mochawesome
+  - Jest html reporters
 
 - _HTTP client:_
 
@@ -72,7 +71,7 @@ installed on the local machine
 
 - _Mock:_
 
-  - Wiremock standalone docker image
+  - Wiremock docker image
 
 - _Linting Utility:_
 
@@ -87,13 +86,16 @@ installed on the local machine
 
 ## **Troubleshooting:**
 
-Error: If test fails with '_Timeout of 10000ms exceeded. For async tests and hooks, ensure "done()" is called;_'
+Error: If getting `error.code: ECONNREFUSED` error when running tests against mock then
 
-then increase the timeout in [package.json](https://github.com/kapilsethi/poc-api-testing-with-node-js/blob/master/package.json) <br />
+- update the base url with ip instead of localhost in [test-data.json](https://github.com/kapilsethi/poc-api-testing-with-node-js/blob/master/test-data/test-data.json) file <br />
 
-`"./node_modules/.bin/mocha --timeout 20000 -r ts-node/register --unhandled-rejections=warn test/**/*.ts",`
+`"baseUrl": "http://<ip-of-the-machine>:9000/",`
 
-<br />for more details refer to [mocha issue](https://github.com/mochajs/mocha/issues/2025)
+<br /> for more details refer to following stackoverflow pages
+
+- [Get api working in Postman but not with Axios](https://stackoverflow.com/questions/70744842/get-api-working-in-postman-but-not-with-axios) and
+- [Can't send HTTP requests to Localhost Backend from React Native Mobile App](https://stackoverflow.com/questions/70547373/cant-send-http-requests-to-localhost-backend-from-react-native-mobile-app)
 
 ## **Have a feedback?**
 
