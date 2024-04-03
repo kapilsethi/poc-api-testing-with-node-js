@@ -1,5 +1,8 @@
 name: Executed Automated E2E Tests
 run-name: Automated E2E Tests in ${{ github.event.inputs.environment }} environment by ${{ github.actor }}
+env:
+  RUNNER_MOCK: ubuntu-latest
+  RUNNER_PROD: ubuntu-latest
 on:
   workflow_dispatch:
     inputs:
@@ -10,7 +13,7 @@ on:
       environment:
         description: Which environment?
         required: true
-        type: environment
+        # type: environment
         default: prod
 
 concurrency:
@@ -27,9 +30,9 @@ jobs:
         id: set-runner
         run: |
           if [ ${{ github.event.inputs.environment }} == 'mock' ]; then
-            echo "runnner=ubuntu-latest" >> $GITHUN_OUTPUT
+            echo "runnner=$RUNNER_MOCK" >> $GITHUN_OUTPUT
           else
-            echo "runnner=ubuntu-latest" >> $GITHUN_OUTPUT
+            echo "runnner=$RUNNER_PROD" >> $GITHUN_OUTPUT
           fi
   e2e-tests:
     needs: [setup-runner]
