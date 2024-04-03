@@ -1,11 +1,10 @@
 import "dotenv/config";
-import { expect } from "chai";
 import * as testData from "../test-data/test-data.json";
 import * as stationTestData from "../test-data/station-test-data.json";
 import { apiHelper } from "../helpers/api-helper";
 import { mockHelper } from "../helpers/mock-helper";
 
-describe("Register station --> should be able to register station when valid api key is provided in the request ", async () => {
+describe("Register station --> should be able to register station when valid api key is provided in the request ", () => {
   let stationId: string;
   let url: string;
   let apiKey: any;
@@ -16,7 +15,7 @@ describe("Register station --> should be able to register station when valid api
   let getRegisteredStationAfterDeletingResponse: any;
   const testEnv = process.env.TEST_ENV;
 
-  describe("Test data setup ", async () => {
+  describe("Test data setup ", () => {
     it("Setup - add mocks if running against mock data", async () => {
       await mockHelper.addStub();
     });
@@ -30,7 +29,7 @@ describe("Register station --> should be able to register station when valid api
     });
   });
 
-  describe("Test starts here ", async () => {
+  describe("Test starts here ", () => {
     it("create station register request - make a post api request with required api key", async () => {
       postRegisterStationResponse = await apiHelper.postRequestMethod(
         url,
@@ -44,27 +43,24 @@ describe("Register station --> should be able to register station when valid api
     });
 
     it("create station register response - validate status code and status text in the post api response", async () => {
-      expect(
-        postRegisterStationResponse.status,
-        "create station register post api response status code mismatch"
-      ).to.equal(201);
-      expect(postRegisterStationResponse.statusText).to.equal("Created");
+      expect(postRegisterStationResponse.status).toEqual(201);
+      expect(postRegisterStationResponse.statusText).toEqual("Created");
     });
 
     it("create station register response - validate external id, name and the locations in the post api response", async () => {
-      expect(postRegisterStationResponse.data.external_id).to.equal(
+      expect(postRegisterStationResponse.data.external_id).toEqual(
         stationTestData.external_id
       );
-      expect(postRegisterStationResponse.data.name).to.equal(
+      expect(postRegisterStationResponse.data.name).toEqual(
         stationTestData.name
       );
-      expect(postRegisterStationResponse.data.latitude).to.equal(
+      expect(postRegisterStationResponse.data.latitude).toEqual(
         stationTestData.latitude
       );
-      expect(postRegisterStationResponse.data.longitude).to.equal(
+      expect(postRegisterStationResponse.data.longitude).toEqual(
         stationTestData.longitude
       );
-      expect(postRegisterStationResponse.data.altitude).to.equal(
+      expect(postRegisterStationResponse.data.altitude).toEqual(
         stationTestData.altitude
       );
     });
@@ -91,34 +87,31 @@ describe("Register station --> should be able to register station when valid api
     });
 
     it("get registered station response - validate status code and status text in the get api response", async () => {
-      expect(
-        getRegisteredStationResponse.status,
-        "get registered station api response status code mismatch"
-      ).to.equal(200);
-      expect(getRegisteredStationResponse.statusText).to.equal("OK");
+      expect(getRegisteredStationResponse.status).toEqual(200);
+      expect(getRegisteredStationResponse.statusText).toEqual("OK");
       console.log("Station " + stationId + " is registered successfully");
     });
 
     it("get registered station response - validate external id, name and the locations in the get api response", async () => {
-      expect(getRegisteredStationResponse.data.external_id).to.equal(
+      expect(getRegisteredStationResponse.data.external_id).toEqual(
         stationTestData.external_id
       );
-      expect(getRegisteredStationResponse.data.name).to.equal(
+      expect(getRegisteredStationResponse.data.name).toEqual(
         stationTestData.name
       );
-      expect(getRegisteredStationResponse.data.latitude).to.equal(
+      expect(getRegisteredStationResponse.data.latitude).toEqual(
         stationTestData.latitude
       );
-      expect(getRegisteredStationResponse.data.longitude).to.equal(
+      expect(getRegisteredStationResponse.data.longitude).toEqual(
         stationTestData.longitude
       );
-      expect(getRegisteredStationResponse.data.altitude).to.equal(
+      expect(getRegisteredStationResponse.data.altitude).toEqual(
         stationTestData.altitude
       );
     });
   });
 
-  describe("Tear down --> should be able to delete the registered station ", async () => {
+  describe("Tear down --> should be able to delete the registered station ", () => {
     it("delete registered station request - make a delete api call", async () => {
       deleteRegisteredStationResponse = await apiHelper.deleteRequestMethod(
         urlForGetRegisteredStationApi,
@@ -132,11 +125,8 @@ describe("Register station --> should be able to register station when valid api
     });
 
     it("delete registered station response - validate status in the delete api response", async () => {
-      expect(
-        deleteRegisteredStationResponse.status,
-        "delete station api response status code mismatch"
-      ).to.equal(204);
-      expect(deleteRegisteredStationResponse.statusText).to.equal("No Content");
+      expect(deleteRegisteredStationResponse.status).toEqual(204);
+      expect(deleteRegisteredStationResponse.statusText).toEqual("No Content");
     });
 
     it("get registered station request - make a get api call after deleting registered station", async () => {
@@ -157,11 +147,8 @@ describe("Register station --> should be able to register station when valid api
     });
 
     it("get registered station response - should not be getting station as its been deleted", async () => {
-      expect(
-        getRegisteredStationAfterDeletingResponse.status,
-        "delete station data api response status code mismatch"
-      ).to.equal(404);
-      expect(getRegisteredStationAfterDeletingResponse.data.message).to.equal(
+      expect(getRegisteredStationAfterDeletingResponse.status).toEqual(404);
+      expect(getRegisteredStationAfterDeletingResponse.data.message).toEqual(
         "Station not found"
       );
     });

@@ -1,0 +1,22 @@
+{
+  "moduleFileExtensions": ["js", "json", "ts"],
+  "rootDir": ".",
+  "testRegex": "-test.ts$",
+  "transform": {
+    "^.+\\.(t|j)s$": "ts-jest"
+  },
+  "testTimeout": 120000,
+  "reporters": [
+    "default",
+    [
+      "jest-html-reporters",
+      {
+        "publicPath": "./test-results",
+        "filename": "test-execution-report.html",
+        "pageTitle": "Automation - Test Execution Report",
+        "dataMargeLevel": 1,
+        "hideIcon": true
+      }
+    ]
+  ]
+}
