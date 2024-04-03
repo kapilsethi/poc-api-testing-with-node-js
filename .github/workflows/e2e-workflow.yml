@@ -22,6 +22,15 @@ jobs:
     runs-on: ubuntu-latest
     outputs:
       runner: ${{ steps.set-runner.outputs.runner }}
+    steps:
+      - name: Check environment and set the runner
+        id: set-runner
+        run: |
+          if [ ${{ github.event.inputs.environment }} == 'mock' ]; then
+            echo "runnner=ubuntu-latest" >> $GITHUN_OUTPUT
+          else
+            echo "runnner=ubuntu-latest" >> $GITHUN_OUTPUT
+          fi
   e2e-tests:
     needs: [setup-runner]
     environment: ${{ github.event.inputs.environment }}
