@@ -21,7 +21,7 @@ on:
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
-  cancel-in-proress: true
+  cancel-in-progress: true
 
 jobs:
   setup-runner:
