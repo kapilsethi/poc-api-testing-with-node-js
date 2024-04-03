@@ -11,9 +11,9 @@ on:
         required: true
         default: prod
         type: environment
-        # options:
-        #   - prod
-        #   - mock
+        options:
+          - prod
+          - mock
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
