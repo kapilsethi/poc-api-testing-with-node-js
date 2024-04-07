@@ -82,7 +82,7 @@ describe("Register station --> should be able to register station when valid api
 
       console.log(
         "get registered station api response: ",
-        postRegisterStationResponse.data
+        getRegisteredStationResponse.data
       );
     });
 
